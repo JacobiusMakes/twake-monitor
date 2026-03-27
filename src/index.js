@@ -46,25 +46,25 @@ const services = [
     id: 'jmap',
     name: 'Twake Mail (JMAP)',
     url: process.env.JMAP_URL || 'https://jmap.twake.app/.well-known/jmap',
-    expect: { status: 200 },
-  },
-  {
-    id: 'drive',
-    name: 'Twake Drive (Cozy)',
-    url: process.env.DRIVE_URL || 'https://drive.twake.app/status',
-    expect: { status: 200 },
+    expect: { status: [200, 302, 401] }, // 302/401 = server alive, auth required
   },
   {
     id: 'sso',
     name: 'SSO (LemonLDAP)',
-    url: process.env.SSO_URL || 'https://sso.twake.app/oauth2/.well-known/openid-configuration',
+    url: process.env.SSO_URL || 'https://sso.twake.app/',
+    expect: { status: 200 },
+  },
+  {
+    id: 'oidc',
+    name: 'OIDC Provider (sign-up)',
+    url: process.env.OIDC_URL || 'https://sign-up.twake.app/.well-known/openid-configuration',
     expect: { status: 200, bodyContains: 'authorization_endpoint' },
   },
   {
     id: 'linshare',
     name: 'LinShare',
-    url: process.env.LINSHARE_URL || 'https://linshare.twake.app/linshare/webservice/rest/user/authentication/authorized',
-    expect: { status: [200, 401] }, // 401 is fine — it means the server is alive
+    url: process.env.LINSHARE_URL || 'https://linshare.twake.app/',
+    expect: { status: [200, 302, 401, 404] }, // any HTTP response = server alive
   },
 ];
 
