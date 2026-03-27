@@ -1,0 +1,15 @@
+{
+  "name": "twake-monitor",
+  "version": "0.1.0",
+  "description": "Health check and uptime monitor for Twake Workplace services — Matrix, JMAP, Cozy, LinShare, SSO",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test 'test/**/*.test.js'"
+  },
+  "keywords": ["twake", "monitor", "health-check", "uptime", "linagora"],
+  "author": "Jacob",
+  "license": "AGPL-3.0"
+}
